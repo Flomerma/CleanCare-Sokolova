@@ -196,6 +196,31 @@ Aktuell werden Buchungen über `src/lib/db.ts` gespeichert:
 
 ---
 
+## Abhängigkeiten und Sicherheit
+
+`npm audit` meldet aktuell **0 Schwachstellen**. Damit das so bleibt, gelegentlich
+`npm audit` ausführen und Updates einspielen.
+
+Im `package.json` sind zwei `overrides` gesetzt:
+
+```json
+"overrides": {
+  "postcss": "^8.5.18",
+  "sharp": "^0.35.1"
+}
+```
+
+Next.js gibt diese beiden Pakete intern in älteren, verwundbaren Versionen vor
+(PostCSS-XSS/Path-Traversal, libvips-CVEs in sharp). Die Overrides erzwingen die
+gepatchten Versionen. Sie können entfernt werden, sobald Next.js selbst
+aktualisierte Versionen ausliefert.
+
+> Hinweis: `npm audit fix --force` schlägt in diesem Fall eine Rückstufung auf
+> `next@9.3.3` vor – das ist keine sinnvolle Lösung und sollte nicht ausgeführt
+> werden.
+
+---
+
 ## Projektstruktur
 
 ```
