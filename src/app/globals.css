@@ -1,0 +1,56 @@
+@import "tailwindcss";
+
+/**
+ * Farbpalette: ruhige Blau-/Grüntöne, viel Weissraum.
+ * TODO: Farben bei Bedarf an ein späteres Logo/CI anpassen.
+ */
+@theme {
+  --color-brand-50: #eef7fb;
+  --color-brand-100: #d5ecf5;
+  --color-brand-200: #aedae9;
+  --color-brand-300: #7cc0d8;
+  --color-brand-400: #479ec1;
+  --color-brand-500: #2b81a6;
+  --color-brand-600: #23678a;
+  --color-brand-700: #1f5471;
+  --color-brand-800: #1e465e;
+  --color-brand-900: #1c3b50;
+
+  --color-mint-50: #eefaf5;
+  --color-mint-100: #d3f2e5;
+  --color-mint-200: #a9e5cf;
+  --color-mint-300: #74d1b3;
+  --color-mint-400: #45b795;
+  --color-mint-500: #2b9c7d;
+  --color-mint-600: #1f7d65;
+  --color-mint-700: #1c6453;
+  --color-mint-800: #1a5044;
+  --color-mint-900: #17423a;
+
+  --color-ink: #17242e;
+  --color-muted: #5b6b78;
+}
+
+html {
+  scroll-behavior: smooth;
+  /* Damit Anker-Sprünge nicht unter der fixierten Navigation landen. */
+  scroll-padding-top: 5.5rem;
+}
+
+body {
+  background-color: #ffffff;
+  color: var(--color-ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Sichtbarer Fokusrahmen für Tastaturbedienung. */
+:focus-visible {
+  outline: 3px solid var(--color-brand-400);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
