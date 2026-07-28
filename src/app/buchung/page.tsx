@@ -14,6 +14,7 @@ export default function BuchungPage() {
   return (
     <>
       <PageHeader
+        crumbs={[{ label: "Start", href: "/" }]}
         eyebrow="Buchung"
         title="Termin online anfragen"
         lead="In fünf kurzen Schritten zu Ihrem Wunschtermin. Die Anfrage ist unverbindlich und kostenlos."

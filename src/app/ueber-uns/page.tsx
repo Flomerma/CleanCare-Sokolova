@@ -31,6 +31,7 @@ export default function UeberUnsPage() {
   return (
     <>
       <PageHeader
+        crumbs={[{ label: "Start", href: "/" }]}
         eyebrow="Über uns"
         title={`Das Team hinter ${site.name}`}
         lead={`${site.slogan} – dieser Anspruch prägt unsere tägliche Arbeit in ${site.region}.`}

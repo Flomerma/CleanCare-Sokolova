@@ -27,18 +27,37 @@ npm run build && npm start
 
 ## Seitenstruktur
 
-| Route           | Inhalt                                                        |
-| --------------- | ------------------------------------------------------------- |
-| `/`             | Startseite: Hero, Leistungen, Vertrauens-Sektion, Über-uns-Teaser, Buchungs-CTA |
-| `/leistungen`   | Alle sechs Leistungen als Karten, jeweils mit Link ins Buchungssystem |
-| `/ueber-uns`    | Firmengeschichte (Platzhaltertext) und Platzhalterfoto        |
-| `/buchung`      | Mehrstufiges Buchungsformular (5 Schritte)                    |
-| `/kontakt`      | Kontaktformular, tel:/mailto:-Links, Google-Maps-Karte        |
-| `/impressum`    | Pflichtangaben gemäss Art. 3 Abs. 1 lit. s UWG                |
-| `/datenschutz`  | Datenschutzerklärung gemäss revDSG                            |
-| `/admin`        | Passwortgeschützte Buchungsverwaltung                         |
+| Route                    | Inhalt                                                |
+| ------------------------ | ----------------------------------------------------- |
+| `/`                      | Kompakte Startseite: Hero, Vertrauens-Leiste, Leistungsüberblick, Verweise auf die Unterseiten |
+| `/leistungen`            | Übersicht aller sechs Leistungen als Karten           |
+| `/leistungen/<leistung>` | **Eigene Seite je Leistung**: Leistungsumfang, Ablauf, Preishinweis, FAQ, Buchungs-CTA |
+| `/ueber-uns`             | Firmengeschichte (Platzhaltertext) und Platzhalterfoto |
+| `/buchung`               | Mehrstufiges Buchungsformular (5 Schritte)            |
+| `/kontakt`               | Kontaktformular, tel:/mailto:-Links, Google-Maps-Karte |
+| `/impressum`             | Pflichtangaben gemäss Art. 3 Abs. 1 lit. s UWG        |
+| `/datenschutz`           | Datenschutzerklärung gemäss revDSG                    |
+| `/admin`                 | Passwortgeschützte Buchungsverwaltung                 |
 
-Zusätzlich: `/sitemap.xml`, `/robots.txt`, strukturierte Daten (`CleaningService`) für lokales SEO.
+Die sechs Leistungsseiten entstehen automatisch aus `src/config/services.ts`
+(`generateStaticParams`) und werden beim Build statisch vorgerendert. Eine neue
+Leistung ergänzen heisst deshalb nur: einen Eintrag in dieser Datei hinzufügen –
+Detailseite, Navigation, Footer, Sitemap und Buchungsformular ziehen automatisch
+nach.
+
+Erreichbar sind die Detailseiten über das Untermenü «Leistungen» im Header, die
+Kacheln auf Start- und Übersichtsseite sowie über den Footer.
+
+### SEO je Seite
+
+Neben `/sitemap.xml` und `/robots.txt` liefert jede Leistungsseite:
+
+* eigenen Seitentitel, eigene Meta-Description und eigenes Canonical
+* strukturierte Daten `Service` und `FAQPage` (Chance auf FAQ-Snippets bei Google)
+* `BreadcrumbList` für die Pfadanzeige in den Suchergebnissen
+
+Auf der Startseite steht weiterhin `CleaningService` mit dem vollständigen
+Leistungskatalog. Brotkrumen gibt es auf allen Unterseiten.
 
 ---
 
@@ -89,7 +108,10 @@ Open-Graph-Bild 1200×630 px.
 ### 3. Texte
 
 * `src/app/ueber-uns/page.tsx` – Firmengeschichte (`PLATZHALTERTEXT`, mehrfach markiert)
-* `src/config/services.ts` – Leistungsbeschreibungen und Stichpunkte
+* `src/config/services.ts` – **zentrale Datei für alle Leistungsinhalte**: Kurztext,
+  Beschreibung, Leistungsumfang, Ablauf, FAQ und Preishinweis je Leistung. Was hier
+  steht, erscheint auf der jeweiligen Detailseite.
+* `src/config/images.ts` – unter `serviceImages` das Kopfbild je Leistungsseite
 * `src/app/page.tsx` – Vertrauens-Sektion und Kennzahlen
 * `src/app/datenschutz/page.tsx` – Aufbewahrungsfristen, Dienstleister, Stand-Datum
 * `src/app/impressum/page.tsx` – MWST-Nummer
@@ -229,6 +251,7 @@ src/
 │   ├── page.tsx              Startseite
 │   ├── layout.tsx            Grundgerüst, Meta-Tags, strukturierte Daten
 │   ├── leistungen/           Leistungsübersicht
+│   │   └── [slug]/           Detailseite je Leistung (statisch vorgerendert)
 │   ├── ueber-uns/            Über uns
 │   ├── buchung/              Buchungssystem
 │   ├── kontakt/              Kontakt inkl. Karte

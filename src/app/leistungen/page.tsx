@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import PageHeader from "@/components/PageHeader";
+import Breadcrumbs from "@/components/Breadcrumbs";
 import ServiceCard from "@/components/ServiceCard";
 import { services } from "@/config/services";
 import { site } from "@/config/site";
@@ -14,11 +14,19 @@ export const metadata: Metadata = {
 export default function LeistungenPage() {
   return (
     <>
-      <PageHeader
-        eyebrow="Leistungen"
-        title="Unsere Reinigungsleistungen"
-        lead={`Für Privathaushalte, Büros und Liegenschaften in ${site.region}. Wählen Sie eine Leistung – die Auswahl wird im Buchungsformular automatisch übernommen.`}
-      />
+      <section className="border-b border-brand-100 bg-brand-50/50">
+        <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-14">
+          <Breadcrumbs items={[{ label: "Start", href: "/" }, { label: "Leistungen" }]} />
+          <p className="mt-8 text-sm font-semibold uppercase tracking-wider text-mint-700">Leistungen</p>
+          <h1 className="mt-2 text-3xl font-bold tracking-tight text-brand-900 sm:text-4xl">
+            Unsere Reinigungsleistungen
+          </h1>
+          <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted sm:text-lg">
+            Für Privathaushalte, Büros und Liegenschaften in {site.region}. Wählen Sie eine Leistung
+            für alle Details – oder buchen Sie direkt einen Termin.
+          </p>
+        </div>
+      </section>
 
       <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">

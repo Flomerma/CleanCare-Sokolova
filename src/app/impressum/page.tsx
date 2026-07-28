@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 export default function ImpressumPage() {
   return (
     <>
-      <PageHeader title="Impressum" lead="Angaben gemäss Art. 3 Abs. 1 lit. s UWG (Schweiz)." />
+      <PageHeader crumbs={[{ label: "Start", href: "/" }]} title="Impressum" lead="Angaben gemäss Art. 3 Abs. 1 lit. s UWG (Schweiz)." />
 
       <section className="mx-auto max-w-3xl px-4 py-16 sm:px-6">
         {/* TODO: Alle Platzhalter in src/config/site.ts durch die echten Firmendaten ersetzen. */}

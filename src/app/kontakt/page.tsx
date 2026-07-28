@@ -15,6 +15,7 @@ export default function KontaktPage() {
   return (
     <>
       <PageHeader
+        crumbs={[{ label: "Start", href: "/" }]}
         eyebrow="Kontakt"
         title="Wir sind für Sie da"
         lead={`Rufen Sie uns an, schreiben Sie uns eine E-Mail oder nutzen Sie das Formular. Wir antworten innerhalb von 24 Stunden.`}

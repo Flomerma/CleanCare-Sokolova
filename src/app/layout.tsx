@@ -68,7 +68,14 @@ function LocalBusinessJsonLd() {
       name: "Reinigungsleistungen",
       itemListElement: services.map((service) => ({
         "@type": "Offer",
-        itemOffered: { "@type": "Service", name: service.title, description: service.short },
+        // Verweist auf die jeweilige Leistungs-Detailseite.
+        url: `${site.url}/leistungen/${service.id}`,
+        itemOffered: {
+          "@type": "Service",
+          name: service.title,
+          description: service.short,
+          url: `${site.url}/leistungen/${service.id}`,
+        },
       })),
     },
   };

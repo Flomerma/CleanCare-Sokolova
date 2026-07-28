@@ -17,6 +17,7 @@ export default function DatenschutzPage() {
   return (
     <>
       <PageHeader
+        crumbs={[{ label: "Start", href: "/" }]}
         title="Datenschutzerklärung"
         lead="Gemäss revidiertem Schweizer Datenschutzgesetz (revDSG), in Kraft seit 1. September 2023."
       />
